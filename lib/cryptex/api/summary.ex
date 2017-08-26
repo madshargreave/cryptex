@@ -1,5 +1,7 @@
 defmodule Cryptex.API.Summary do 
-  @moduledoc false
+  @moduledoc """
+  
+  """
   use Cryptex.Resource
 
   @spec list :: [Types.Summary.t]

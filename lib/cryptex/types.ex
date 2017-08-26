@@ -1,5 +1,4 @@
 defmodule Cryptex.Types.Summary do
-  @moduledoc false
   defstruct exchange: nil, market: nil, price: nil, volume: nil
 
   @type t :: %__MODULE__{
