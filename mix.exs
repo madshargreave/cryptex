@@ -1,10 +1,12 @@
 defmodule Cryptex.Mixfile do
   use Mix.Project
 
+  @version "0.1.0"
+
   def project do
     [
       app: :cryptex,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       deps: deps()
@@ -27,4 +29,17 @@ defmodule Cryptex.Mixfile do
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
     ]
   end
+
+  defp package do
+    [
+      description: "A thin wrapper around Cryptowat.ch public API",
+      licenses: ["MIT License"],
+      maintainers: ["Mads Hargreave"],
+      links: %{
+        github: "https://github.com/madshargreave/cryptex",
+        docs: "http://hexdocs.pm/cryptex/#{@version}/"
+      }
+    ]
+  end
+
 end
