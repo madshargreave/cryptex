@@ -15,7 +15,7 @@ defmodule Cryptex.API.Trade do
   defp parse(response, exchange, market) do
     (response.result || [])
     |> Enum.map(fn [id, timestamp, price, amount] -> 
-      struct(Types.Trade, %{exchange: exchange, market: market, id: id, timestamp: timestamp, price: price, amount: amount}) 
+      struct(Types.Trade, %{exchange: exchange, market: market, id: id, timestamp: DateTime.from_unix!(timestamp), price: price, amount: amount}) 
     end)
   end
 
