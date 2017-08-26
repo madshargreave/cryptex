@@ -17,3 +17,17 @@ defmodule Cryptex.Types.Summary do
   }
 
 end
+
+defmodule Cryptex.Types.Trade do
+  defstruct exchange: nil, market: nil, id: nil, price: nil, amount: nil, timestamp: nil
+
+  @type t :: %__MODULE__{
+    exchange: binary,
+    market: binary,
+    id: integer,
+    timestamp: DateTime.t,
+    price: float,
+    amount: float
+  }
+
+end

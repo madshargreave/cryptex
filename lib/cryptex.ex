@@ -16,11 +16,35 @@ defmodule Cryptex do
   end
 
   @doc """
-  List summary for exchange and market
+  Get summary for exchange and market
   """
   @spec get_summary(exchange, market) :: Types.Summary.t
   def get_summary(exchange, market) do
     API.Summary.get(exchange, market)
+  end
+
+  @doc """
+  List trades for exchange and market
+
+  ## Options
+
+    * `limit` - Limit number of trades returned
+    * `since` - Only return trades since timestamp
+  """
+  @spec list_trades(exchange, market, keyword) :: [Types.Trade.t]
+  def list_trades(exchange, market, opts \\ []) do
+    API.Trade.list(exchange, market, cast_opts(opts))
+  end
+
+  @spec cast_opts(keyword) :: keyword
+  defp cast_opts(opts) do
+    opts
+    |> Enum.map(fn {key, value} ->
+      case value do
+        %DateTime{} = value -> {key, DateTime.to_unix(value)}
+        _ -> {key, value}
+      end
+    end)
   end
 
 end
