@@ -1,7 +1,5 @@
 defmodule Cryptex.Utils do
-  @moduledoc """
-  Common utility functions
-  """
+  @moduledoc false
 
   @doc """
   Parses exchange and market from a string of the format "bithumb:etckrw"

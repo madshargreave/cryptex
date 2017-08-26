@@ -1,7 +1,5 @@
 defmodule Cryptex.Client do
-  @moduledoc """
-  
-  """
+  @moduledoc false
   use HTTPoison.Base
   alias HTTPoison.Response
 

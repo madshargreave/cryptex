@@ -1,7 +1,5 @@
 defmodule Cryptex.API.Summary do 
-  @moduledoc """
-  
-  """
+  @moduledoc false
   use Cryptex.Resource
 
   @spec list :: [Types.Summary.t]
@@ -19,13 +17,13 @@ defmodule Cryptex.API.Summary do
   end
 
   @spec parse(Cryptex.exchange, Cryptex.market, map) :: Types.Summary.t
-  def parse(response, exchange, market) do
+  defp parse(response, exchange, market) do
     params = %{exchange: exchange, market: market} |> Map.merge(response.result)
     struct(Types.Summary, params)
   end
 
   @spec parse(map) :: [Types.Summary.t]
-  def parse(%{result: result}) do
+  defp parse(%{result: result}) do
     result
     |> Enum.map(fn {name, result} -> 
       params = 
