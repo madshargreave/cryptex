@@ -5,7 +5,7 @@ defmodule Cryptex.Mixfile do
 
   def project do
     [
-      app: :cryptex,
+      app: :cryptowatch_ex,
       version: @version,
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
@@ -28,18 +28,19 @@ defmodule Cryptex.Mixfile do
       {:httpoison, "~> 0.13"},
       {:poison, "~> 3.1"},
       {:atomic_map, "~> 0.8"},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 
   defp package do
     [
-      description: "A thin wrapper around Cryptowat.ch public API",
+      description: "A thin wrapper around public Cryptowatch API",
       licenses: ["MIT License"],
       maintainers: ["Mads Hargreave"],
       links: %{
         github: "https://github.com/madshargreave/cryptex",
-        docs: "http://hexdocs.pm/cryptex/#{@version}/"
+        docs: "http://hexdocs.pm/cryptowatch_ex/#{@version}/"
       }
     ]
   end
