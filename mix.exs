@@ -9,6 +9,8 @@ defmodule Cryptex.Mixfile do
       version: @version,
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
+      package: package(),
+      docs: [extras: ["README.md"]],
       deps: deps()
     ]
   end
