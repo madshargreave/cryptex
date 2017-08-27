@@ -1,6 +1,8 @@
 defmodule Cryptex.Client do
   @moduledoc false
   use HTTPoison.Base
+
+  alias Cryptex.Utils
   alias HTTPoison.Response
 
   @type response :: nil | {integer, any} | Poison.Parser.t
@@ -19,8 +21,13 @@ defmodule Cryptex.Client do
 
   @spec get(binary, keyword) :: response
   def get(path, params \\ []) do
-    request(:get, path, "", [], params: params) 
+    _request(:get, path, params) 
     |> process_response 
+  end
+
+  @spec _request(term, binary, keyword) :: Response.t
+  defp _request(method, path, params \\ []) do
+    request(method, path, "", [], params: Utils.cast_params(params))
   end
 
 end 
