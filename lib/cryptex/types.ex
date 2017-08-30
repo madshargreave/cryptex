@@ -31,3 +31,19 @@ defmodule Cryptex.Types.Trade do
   }
 
 end
+
+defmodule Cryptex.Types.Candle do
+  defstruct exchange: nil, market: nil, open: nil, close: nil, high: nil, low: nil, volume: nil, closed_at: nil
+
+  @type t :: %__MODULE__{
+    exchange: binary,
+    market: binary,
+    open: float, 
+    close: float, 
+    high: float, 
+    low: float, 
+    volume: float, 
+    closed_at: DateTime.t
+  }
+
+end

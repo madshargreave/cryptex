@@ -36,6 +36,20 @@ defmodule Cryptex do
     API.Trade.list(exchange, market, cast_opts(opts))
   end
 
+  @doc """
+  List trades for exchange and market
+
+  ## Options
+
+    * `before` - Only return candles opening before timestamp
+    * `after` - Only return candles opening after timestamp
+    * `period` - Fetch candles grouped by period in seconds
+  """
+  @spec list_candles(exchange, market, keyword) :: [Types.Candle.t]
+  def list_candles(exchange, market, opts \\ []) do
+    API.Candle.list(exchange, market, cast_opts(opts))
+  end
+
   @spec cast_opts(keyword) :: keyword
   defp cast_opts(opts) do
     opts

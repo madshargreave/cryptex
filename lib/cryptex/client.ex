@@ -1,6 +1,7 @@
 defmodule Cryptex.Client do
   @moduledoc false
   use HTTPoison.Base
+  require Logger
 
   alias Cryptex.Utils
   alias HTTPoison.Response
@@ -21,13 +22,22 @@ defmodule Cryptex.Client do
 
   @spec get(binary, keyword) :: response
   def get(path, params \\ []) do
-    _request(:get, path, params) 
+    _request(:get, path, params)
     |> process_response 
+    |> print_allowance
   end
 
   @spec _request(term, binary, keyword) :: Response.t
   defp _request(method, path, params \\ []) do
     request(method, path, "", [], params: Utils.cast_params(params))
+  end
+
+  @spec print_allowance(Response.t) :: Response.t
+  def print_allowance(response) do
+    cost = response.allowance.cost
+    remaining = response.allowance.remaining
+    Logger.info "[#{__MODULE__}]: Cost: #{cost} Remaining: #{remaining} (#{round(remaining / cost)} requests left)"
+    response
   end
 
 end 
