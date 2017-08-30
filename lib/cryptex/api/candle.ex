@@ -21,7 +21,7 @@ defmodule Cryptex.API.Candle do
       struct(Types.Candle, %{
         exchange: exchange, 
         market: market, 
-        closed_at: closed_at,
+        closed_at: DateTime.from_unix!(closed_at),
         open: open,
         high: high,
         low: low,
