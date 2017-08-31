@@ -6,7 +6,7 @@ defmodule Cryptex.API.Candle do
 
   @spec list(Cryptex.exchange, Cryptex.market, keyword) :: [Types.Candle.t]
   def list(exchange, market, opts \\ []) do
-    opts = [periods: opts[:period]]
+    opts = [before: opts[:before], after: opts[:after], periods: opts[:period]]
 
     "/markets/#{exchange}/#{market}/ohlc"
     |> Client.get(opts)
