@@ -20,16 +20,17 @@ defmodule Cryptex.Client do
   def process_response({:ok, %Response{status_code: status_code, body: body}}), do: {status_code, Poison.decode!(body)}
   def process_response(body) when is_map(body), do: AtomicMap.convert(body, safe: false, underscore: false)
 
-  @spec get(binary, keyword) :: response
-  def get(path, params \\ []) do
-    _request(:get, path, params)
+  @spec get(binary, keyword, keyword) :: response
+  def get(path, params \\ [], opts \\ []) do
+    _request(:get, path, params, opts)
     |> process_response 
     |> print_allowance
   end
 
-  @spec _request(term, binary, keyword) :: Response.t
-  defp _request(method, path, params \\ []) do
-    request(method, path, "", [], params: Utils.cast_params(params))
+  @spec _request(term, binary, keyword, keyword) :: Response.t
+  defp _request(method, path, params \\ [], opts \\ []) do
+    opts = Keyword.merge(Utils.cast_params(params), opts)
+    request(method, path, "", [], opts)
   end
 
   @spec print_allowance(Response.t) :: Response.t
