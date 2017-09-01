@@ -30,7 +30,6 @@ defmodule Cryptex.Client do
   @spec _request(term, binary, keyword, keyword) :: Response.t
   defp _request(method, path, params \\ [], opts \\ []) do
     opts = Keyword.merge([params: Utils.cast_params(params)], opts)
-    IO.inspect opts
     request(method, path, "", [], opts)
   end
 
