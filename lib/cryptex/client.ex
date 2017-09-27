@@ -24,7 +24,6 @@ defmodule Cryptex.Client do
   def get(path, params \\ [], opts \\ []) do
     _request(:get, path, params, opts)
     |> process_response 
-    |> print_allowance
   end
 
   @spec _request(term, binary, keyword, keyword) :: Response.t
